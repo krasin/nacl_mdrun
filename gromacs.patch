@@ -137,6 +137,21 @@ index 27f9b5a..3f217bc 100644
  #include "typedefs.h"
  #include "smalloc.h"
  #include "futil.h"
+diff --git a/src/kernel/md.c b/src/kernel/md.c
+index 0ab2b93..aa1a60c 100644
+--- a/src/kernel/md.c
++++ b/src/kernel/md.c
+@@ -1086,9 +1086,7 @@ double do_md(FILE *fplog, t_commrec *cr, int nfile, const t_filenm fnm[],
+          * or at the last step (but not when we do not want confout),
+          * but never at the first step or with rerun.
+          */
+-        bCPT = (((gs.set[eglsCHKPT] && (bNS || ir->nstlist == 0)) ||
+-                 (bLastStep && (Flags & MD_CONFOUT))) &&
+-                step > ir->init_step && !bRerunMD);
++        bCPT = FALSE;
+         if (bCPT)
+         {
+             gs.set[eglsCHKPT] = 0;
 diff --git a/src/kernel/mdrun.c b/src/kernel/mdrun.c
 index a5c0e6a..1ba482e 100644
 --- a/src/kernel/mdrun.c
